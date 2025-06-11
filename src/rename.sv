@@ -1,4 +1,4 @@
-`include "src/typedefs.sv"
+`include "src/pkg/typedefs.sv"
 
 module rename(
     input  logic       clk_i,
