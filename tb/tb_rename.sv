@@ -41,6 +41,10 @@ module tb_rename(
 	int next_commit_timer;
 	
 	initial begin
+		// VCD dosyası için gerekli komutlar
+		$dumpfile("tb_rename.vcd");  // VCD dosya adı
+		$dumpvars(0, tb_rename);     // Tüm signalleri dump et
+		
 		reset = 0;
 		br_result = '0;
 		p_commit = '0;
@@ -62,7 +66,7 @@ module tb_rename(
 		// #10 dinstr = {valid:1, rd:{valid:1, idx:1}, rs1:{valid:0, idx:2}, rs2:{valid:0, idx:3}, is_branch:0};  p_commit = {valid:1, idx:35, ready:0}; br_result = {valid:0, hit:0}; 
 		// #10 dinstr = {valid:1, rd:{valid:1, idx:4}, rs1:{valid:1, idx:0}, rs2:{valid:1, idx:5}, is_branch:0};  p_commit = {valid:0, idx:0, ready:0}; br_result = {valid:0, hit:0}; 
 		// #10 dinstr = {valid:1, rd:{valid:1, idx:5}, rs1:{valid:1, idx:8}, rs2:{valid:1, idx:1}, is_branch:0};  p_commit = {valid:0, idx:0, ready:0}; br_result = {valid:0, hit:0}; 
-		// #10 dinstr = {valid:1, rd:{valid:1, idx:7}, rs1:{valid:1, idx:5}, rs2:{valid:1, idx:1}, is_branch:0};  p_commit = {valid:0, idx:0, ready:0}; br_result = {valid:1, hit:0}; 
+		// #10 dinstr = {valid:1, rd:{valid:1, idx:7}, rs1:{valid:1, idx:5}, rs2:{valid:1, idx:1}, is_branch:0};  p_commit = {valid:1, idx:0, ready:0}; br_result = {valid:1, hit:0}; 
 		// #10 dinstr = {valid:1, rd:{valid:1, idx:8}, rs1:{valid:1, idx:5}, rs2:{valid:1, idx:7}, is_branch:0};  p_commit = {valid:0, idx:0, ready:0}; br_result = {valid:0, hit:0}; 
 		// #10 dinstr = {valid:1, rd:{valid:0, idx:1}, rs1:{valid:1, idx:5}, rs2:{valid:0, idx:3}, is_branch:1};  p_commit = {valid:0, idx:0, ready:0}; br_result = {valid:0, hit:0}; 
 		// #10 dinstr = {valid:1, rd:{valid:1, idx:6}, rs1:{valid:1, idx:0}, rs2:{valid:0, idx:3}, is_branch:0};  p_commit = {valid:1, idx:36, ready:0}; br_result = {valid:0, hit:0}; 
@@ -112,6 +116,9 @@ module tb_rename(
 			
 			@(posedge clk);
 		end
+		
+		// Test sonunda VCD dump'ını kapat
+		$dumpoff;
 		#100;
 		$stop(); 
 	end
