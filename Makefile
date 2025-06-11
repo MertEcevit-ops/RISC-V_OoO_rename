@@ -1,15 +1,6 @@
-# Explicit file listings
-PKG_FILES = ./src/pkg/typedefs.sv
-SRC_FILES = ./src/rename.sv
-TB_FILES = ./tb/tb_rename.sv
-
-# Combined file lists
-SV_FILES = ${PKG_FILES} ${SRC_FILES}
+SV_FILES = ${wildcard ./src/pkg/typedefs.sv} ${wildcard ./src/rename.sv}
+TB_FILES = ${wildcard ./tb/tb_rename.sv}
 ALL_FILES = ${SV_FILES} ${TB_FILES}
-
-# Alternative: Keep wildcard patterns as backup
-# SV_FILES_WILDCARD = ${wildcard ./src/pkg/*.sv} ${wildcard ./src/*.sv}
-# TB_FILES_WILDCARD = ${wildcard ./tb/*.sv}
 
 lint:
 	@echo "Running lint checks..."
