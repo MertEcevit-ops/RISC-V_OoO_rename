@@ -42,8 +42,8 @@ module tb_rename(
 	
 	initial begin
 		// VCD dosyası için gerekli komutlar
-		$dumpfile("tb_rename.vcd");  // VCD dosya adı
-		$dumpvars(0, tb_rename);     // Tüm signalleri dump et
+		$dumpfile("dump.vcd");  // VCD dosya adı
+		$dumpvars(0, dump);     // Tüm signalleri dump et
 		
 		reset = 0;
 		br_result = '0;
