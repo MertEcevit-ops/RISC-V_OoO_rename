@@ -1,4 +1,7 @@
+`ifndef TYPEDEFS_INCLUDED
 `include "src/pkg/typedefs.sv"
+`define TYPEDEFS_INCLUDED
+`endif
 
 module rename(
     input  logic       clk_i,
