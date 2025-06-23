@@ -1,4 +1,4 @@
-module rename(
+module rename_2(
     input  logic       clk,
     input  logic       rst_ni,
     input  br_result_t br_result_i,
