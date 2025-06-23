@@ -14,7 +14,7 @@ module tb_rename(
 	logic rn_full;
 
 
-	rename RENAME(
+	rename_2 RENAME(
 		.clk_i(clk),
 		.rst_ni(reset),
 		.br_result_i(br_result),
