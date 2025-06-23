@@ -120,7 +120,7 @@ module tb_rename(
 		// Test sonunda VCD dump'ını kapat
 		$dumpoff;
 		#100;
-		$stop(); 
+		$finish(); 
 	end
 	
 	task check_output();
