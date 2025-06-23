@@ -27,7 +27,9 @@ module rename(
     
     // Branch support structures
     logic [PHYS_REG_BITS-1:0] rat_checkpoint [NUM_ARCH_REGS];
+    logic [PHYS_REG_BITS-1:0] rat_checkpoint_next [NUM_ARCH_REGS];
     logic free_list_checkpoint [NUM_PHYS_REGS];
+    logic free_list_checkpoint_next [NUM_PHYS_REGS];
     logic checkpoint_valid;
     logic checkpoint_valid_next;
     
@@ -112,6 +114,8 @@ module rename(
         free_list_next = free_list;
         phys_ready_next = phys_ready;
         checkpoint_valid_next = checkpoint_valid;
+        rat_checkpoint_next = rat_checkpoint;
+        free_list_checkpoint_next = free_list_checkpoint;
         
         // Handle branch misprediction recovery
         if (br_result_i.valid && !br_result_i.hit && checkpoint_valid) begin
@@ -129,10 +133,10 @@ module rename(
             // Create checkpoint for branch instructions
             if (dinstr_i.is_branch) begin
                 for (int i = 0; i < NUM_ARCH_REGS; i++) begin
-                    rat_checkpoint[i] = rat[i];
+                    rat_checkpoint_next[i] = rat[i];
                 end
                 for (int i = 0; i < NUM_PHYS_REGS; i++) begin
-                    free_list_checkpoint[i] = free_list[i];
+                    free_list_checkpoint_next[i] = free_list[i];
                 end
                 checkpoint_valid_next = 1'b1;
             end
@@ -187,6 +191,8 @@ module rename(
             free_list <= free_list_next;
             phys_ready <= phys_ready_next;
             checkpoint_valid <= checkpoint_valid_next;
+            rat_checkpoint <= rat_checkpoint_next;
+            free_list_checkpoint <= free_list_checkpoint_next;
         end
     end
 
