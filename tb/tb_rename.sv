@@ -15,7 +15,7 @@ module tb_rename(
 
 
 	rename_2 RENAME(
-		.clk_i(clk),
+		.clk(clk),
 		.rst_ni(reset),
 		.br_result_i(br_result),
 		.p_commit_i(p_commit),
